@@ -1,5 +1,32 @@
-package measure;
+ package measure;
 
 public class FeetEquality {
+     private double value;
+     
+     public FeetEquality(double value) {
+    	 this.value = value;
+     }
+     
+     
+     public double getValue() {
+		return value;
+	}
 
+
+	 public void setValue(double value) {
+		 this.value = value;
+	 }
+
+
+	 @Override
+    public boolean equals(Object obj) {
+    	if(this==obj) {
+    		return true;
+    	}
+    	if(obj==null||this.getClass()!=obj.getClass()) {
+    		return false;
+    	}
+    	return Double.compare(this.value, ((FeetEquality) obj).getValue())==0;
+	 }
+	 
 }
