@@ -2,7 +2,7 @@
 
 public class FeetEquality {
      private double value;
-     
+     public FeetEquality() {};
      public FeetEquality(double value) {
     	 this.value = value;
      }
