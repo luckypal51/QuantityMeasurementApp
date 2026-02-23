@@ -1,6 +1,7 @@
 package testquantity;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -10,7 +11,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import measure.InvalidUnitMeasurementException;
 import measure.Length;
-import measure.Length.LengthUnit;
+import measure.LengthUnit;
 import measure.QuantityMeasurementApp;
 import measure.QuantityMeasurementApp.FeetEquality;
 import measure.QuantityMeasurementApp.Inches;
@@ -287,7 +288,7 @@ public class TestQuantityMeasurementApp {
      @Test
      public void testConversionInvalidUnitThrows() throws InvalidUnitMeasurementException{
     	 assertThrows(IllegalArgumentException.class,()->{
-    		QuantityMeasurementApp.demonstrateLengthConversion(null, Length.LengthUnit.FEET,Length.LengthUnit.INCHES); 
+    		QuantityMeasurementApp.demonstrateLengthConversion(null, LengthUnit.FEET,LengthUnit.INCHES); 
     	 });
      }
     @Test
@@ -488,6 +489,48 @@ public class TestQuantityMeasurementApp {
          Length result = l1.add(l2, LengthUnit.INCHES);
          assertEquals(13.2, result.getValue(),0.001);
      } 
+     
+     //Refactoring Unit Enum to Standalone with Conversion Responsibility
+     
+     @Test
+     public void testLengthUnitEnumFeetConstant() throws InvalidUnitMeasurementException{
+    	 assertEquals(1.0,LengthUnit.FEET.getConversionFactor());
+     }
+     
+     @Test
+     public void testLengthUnitEnumInchesConstant() throws InvalidUnitMeasurementException{
+    	 assertEquals(0.0833, LengthUnit.INCHES.getConversionFactor(),0.0001);
+     }
     
+     @Test
+     public void testlengthUnitEnumYardsConstant() throws InvalidUnitMeasurementException{
+    	 assertEquals(3.0,LengthUnit.YARD.getConversionFactor());
+     }
+     
+     @Test
+     public void testLengthUnitEnumCentimeterConstant() throws InvalidUnitMeasurementException{
+    	 assertEquals(0.0328,LengthUnit.CENTIMETRE.getConversionFactor(),0.0001);
+     }
+     
+     @Test
+     public void testConvertToBaseUnitFeetToFeet() throws InvalidUnitMeasurementException{
+    	 assertEquals(5.0,LengthUnit.FEET.convertToBaseUnit(5.0));
+     }
+     
+     @Test
+     public void testConvertToBaseUnitIncheToFeet() throws InvalidUnitMeasurementException{
+    	 assertEquals(1.0,LengthUnit.INCHES.convertToBaseUnit(12.0));
+     }
+     
+     @Test
+     public void testConvertToBaseUnitYardsToFeet() throws InvalidUnitMeasurementException{
+    	 assertEquals(3.0,LengthUnit.YARD.convertToBaseUnit(1.0));
+     }
+     
+     @Test
+     public void testConvertToBaseUnitCentimeterToFeet() throws InvalidUnitMeasurementException{
+    	 assertEquals(1.0,LengthUnit.CENTIMETRE.convertToBaseUnit(30.48),0.01);
+     }
+     
 }
 
