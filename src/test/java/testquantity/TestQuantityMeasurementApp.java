@@ -674,5 +674,13 @@ public class TestQuantityMeasurementApp {
     	 
     	 assertEquals(10.0,val1.add(val2).getValue());
      }
+     
+     @Test
+     public void testAdditionCrossUnitKgToGram() {
+    	 val1 = new QuantityWeight(5.0,WeightUnit.KG);
+    	 val2 = new QuantityWeight(5.0, WeightUnit.GRAM);
+    	 
+    	 assertEquals(10.0,val1.add(val2).getValue());
+     }
 }
 
