@@ -485,7 +485,7 @@ public class TestQuantityMeasurementApp {
      public void testAddition_ExplicitTargetUnit_PrecisionTolerance() throws InvalidUnitMeasurementException {
          Length l1 = new Length(1.0, LengthUnit.FEET);
          Length l2 = new Length(0.1, LengthUnit.FEET);
-         Length result = l1.add(l2, LengthUnit.INCHES); // Verified using epsilon
+         Length result = l1.add(l2, LengthUnit.INCHES);
          assertEquals(13.2, result.getValue(),0.001);
      } 
     
