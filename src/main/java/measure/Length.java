@@ -39,15 +39,16 @@ public class Length {
      public LengthUnit getLen() {
     	 return len;
      }
+//     To convert value to their base unit  
      private double convertToBaseUnit() {
     	 return value*len.getConversionFactor();
      }
-    
      public boolean compare(Length lengthUnit) {
     	 if(lengthUnit==null)return false;
     	  return Math.abs(this.convertToBaseUnit() - lengthUnit.convertToBaseUnit()) < EPSILON;
 	}
      
+//     overrided .equals methods to check if two units are equal or not 
      @Override
     public boolean equals(Object obj) {
         if(this==obj) {
@@ -78,6 +79,7 @@ public class Length {
 		 return new Length(value+thatLength.value, len);
 	 }
 	 
+	 //Main Method to invoke the methods locally 
      public static void main(String[] args) throws InvalidUnitMeasurementException {
 		Length len1 = new Length(1,Length.LengthUnit.FEET);
 		Length len2 = new Length(12,Length.LengthUnit.INCHES);
