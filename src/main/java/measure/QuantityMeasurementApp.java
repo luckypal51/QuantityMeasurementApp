@@ -43,6 +43,20 @@ public class QuantityMeasurementApp {
 	    
 //	    Volume Unit
 	    
+	    System.out.println("Is Litre equal Litre : "+demonstrateEquality(new Quantity<VolumneUnit>(1.0,VolumneUnit.LITRE),new Quantity<VolumneUnit>(1.0, VolumneUnit.LITRE)));
 	    
+        System.out.println("Is Litre equal Mililitre : "+demonstrateEquality(new Quantity<VolumneUnit>(1.0,VolumneUnit.LITRE),new Quantity<VolumneUnit>(1000.0, VolumneUnit.MILLILITRE)));
+        
+        System.out.println("Is Gallon equal Gallon : "+demonstrateAddition(new Quantity<VolumneUnit>(1.0,VolumneUnit.GALLON),new Quantity<VolumneUnit>(1.0, VolumneUnit.GALLON)));
+        
+        System.out.println("Is Mililitre equal Litre : "+demonstrateEquality(new Quantity<VolumneUnit>(500.0,VolumneUnit.MILLILITRE),new Quantity<VolumneUnit>(0.5, VolumneUnit.LITRE)));
+        
+        System.out.println("Is Litre equal Gallon : "+demonstrateEquality(new Quantity<VolumneUnit>(3.78541,VolumneUnit.LITRE),new Quantity<VolumneUnit>(1.0, VolumneUnit.GALLON)));
+        
+        System.out.println("Addition of Litre with Litre : "+demonstrateAddition(new Quantity<VolumneUnit>(1.0,VolumneUnit.LITRE),new Quantity<VolumneUnit>(2.0, VolumneUnit.LITRE)));
+        
+        System.out.println("Addition of litre with mililitre : "+demonstrateAddition(new Quantity<VolumneUnit>(1.0,VolumneUnit.LITRE),new Quantity<VolumneUnit>(1000.0, VolumneUnit.MILLILITRE)));
+        
+       
 	}
 }
