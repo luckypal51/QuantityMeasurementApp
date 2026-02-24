@@ -721,5 +721,10 @@ public class TestQuantityMeasurementApp {
 	     public void testConvertToBaseUnit_MillilitreToLitre() {
 	    	 assertEquals(1.0,VolumneUnit.MILLILITRE.convertToBaseUnit(1000.0));
 	     }
+	     
+	     @Test
+	     public void testConvertFromBaseUnit_LitreToLitre() {
+	    	 assertEquals(2.0, VolumneUnit.LITRE.convertFromBaseUnit(2.0));
+	     }
 }
 
