@@ -35,7 +35,7 @@ public class QuantityMeasurementApp {
     	if(val1.getUnit().getClass()!=val2.getUnit().getClass()) throw new IllegalArgumentException("Invalid Argument Exception ");
     	return val1.subtract(val2);
     }
-    public static <T extends IMeasurable> Quantity<T> demonstrateSubtract(Quantity<T> val1,Quantity<T> val2,T target){
+    public static <T extends IMeasurable> Quantity<T> demonstrateSubtract(Quantity<T> val1,Quantity<T> val2,T target) {
     	if(val1.getUnit().getClass()!=val2.getUnit().getClass()||target.getClass()!=val1.getUnit().getClass()||target.getClass()!=val2.getUnit().getClass()) throw new IllegalArgumentException("Invalid Argument Exception ");
     	return val1.subtract(val2,target);
     }
@@ -102,5 +102,23 @@ public class QuantityMeasurementApp {
         System.out.println("Centralized Division Feet by Feet : "+demonstrateDivision(new Quantity<LengthUnit>(10.0,LengthUnit.FEET), new Quantity<LengthUnit>(2.0,LengthUnit.FEET)));
         
         System.out.println("Centralized Division Inches by feet : "+demonstrateDivision(new Quantity<LengthUnit>(24.0,LengthUnit.INCHES), new Quantity<LengthUnit>(2.0,LengthUnit.FEET)));
+        
+        //Temperature 
+        
+     // Equality Demonstrxation
+        Quantity<Temperature> temp1 = new Quantity<>(0.0,Temperature.CELSIUS);
+        Quantity<Temperature> temp2 = new Quantity<>(32.0, Temperature.FAHRENHEIT);
+        System.out.println("0C equals 32F: "+ temp1.equals(temp2));
+        
+     // Conversion Demonstration
+        Quantity<Temperature> celsius = new Quantity<>(100.0,Temperature.CELSIUS);
+        System.out.println("100C =" + celsius.getUnit().convertTo(100.0,Temperature.FAHRENHEIT)+"F");
+        
+        try {
+        	celsius.add(new Quantity<>(50.0, Temperature.CELSIUS));
+        	} catch (UnsupportedOperationException e) {
+        	System.out.println("Cannot add absolute temperatures: " +e.getMessage());
+
+        	}
 	}
 }

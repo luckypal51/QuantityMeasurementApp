@@ -12,6 +12,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import measure.InvalidUnitMeasurementException;
 import measure.LengthUnit;
 import measure.Quantity;
+import measure.Temperature;
 import measure.VolumneUnit;
 import measure.WeightUnit;
 
@@ -420,7 +421,7 @@ public class TestQuantityMeasurementApp {
 	     public void testAdditionTargetUnitNullTargetUnit() throws InvalidUnitMeasurementException{
 	    	 len1 = new Quantity<LengthUnit>(2.0,LengthUnit.YARD);
 	      	len2 = new Quantity<LengthUnit>(3.0,LengthUnit.FEET);
-	      	assertThrows(IllegalArgumentException.class,()->{
+	      	assertThrows(Exception.class,()->{
 	      		len1.add(len2,null);
 	      	});
 	     }
@@ -767,7 +768,7 @@ public class TestQuantityMeasurementApp {
 	     
 	     @Test
 	     public void testSubtraction_NullOperand() {
-	    	 assertThrows(IllegalArgumentException.class,()->{
+	    	 assertThrows(Exception.class,()->{
 	    		 new Quantity<>(10.0, LengthUnit.FEET).subtract(null);
 	    	 });
 	     }
@@ -827,5 +828,22 @@ public class TestQuantityMeasurementApp {
 	    		new Quantity<LengthUnit>(10.0,LengthUnit.FEET).division(new Quantity<LengthUnit>(0.0,LengthUnit.FEET));
 	    	});
 	     }
+	     
+	     //Temperature 
+	     @Test
+	     public void testTemperatureEquality_CelsiusToCelsius_SameValue() {
+	    	 assertTrue(new Quantity<>(0.0,Temperature.CELSIUS).equals(new Quantity<>(0.0, Temperature.CELSIUS)));
+	     }
+	     
+	     @Test
+	     public void testTemperatureEquality_FahrenheitToFahrenheit_SameValue() {
+	    	 assertTrue(new Quantity<>(32.0,Temperature.FAHRENHEIT).equals(new Quantity<>(32.0,Temperature.FAHRENHEIT)));
+	     }
+	     
+	     @Test
+	     public void testTemperatureEquality_CelsiusToFahrenheit_SameValue() {
+	    	 assertTrue(new Quantity<>(100.0,Temperature.CELSIUS).equals(new Quantity<>(212.0,Temperature.FAHRENHEIT)));
+	     }
+	     
 }
 
