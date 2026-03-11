@@ -1,4 +1,4 @@
-package measure;
+package measure.unit;
 
 public interface IMeasurable {
      double getConversionFactor();
@@ -8,6 +8,10 @@ public interface IMeasurable {
      double convertFromBaseUnit(double value);
      
      String getUnitName();
+     
+     String getMeasurementType();
+     
+     IMeasurable getUnitInstance(String unitName);
      
      SupportArithemetic supportArithemetic = ()-> true;
      

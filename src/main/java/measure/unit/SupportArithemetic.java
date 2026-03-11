@@ -1,4 +1,4 @@
-package measure;
+package measure.unit;
 
 @FunctionalInterface
 interface SupportArithemetic {

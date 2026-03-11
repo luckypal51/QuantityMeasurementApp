@@ -1,4 +1,4 @@
-package measure;
+package measure.unit;
 
 import java.util.function.Function;
 
@@ -65,6 +65,20 @@ public enum Temperature implements IMeasurable {
 		@Override
 		public String getUnitName() {
 			return this.name();
+		}
+		@Override
+		public String getMeasurementType() {
+			// TODO Auto-generated method stub
+			return this.getClass().getSimpleName();
+		}
+		@Override
+		public IMeasurable getUnitInstance(String unitName) {
+			for(Temperature temp : Temperature.values()) {
+				if(temp.equals(unitName)) {
+					return temp;
+				}
+			}
+			throw new IllegalArgumentException("This unit doesn't exists");
 		}
 
 }

@@ -1,4 +1,4 @@
-package measure;
+package measure.unit;
 
 public enum VolumneUnit implements IMeasurable{
       LITRE(1.0),
@@ -31,6 +31,22 @@ public enum VolumneUnit implements IMeasurable{
 	public String getUnitName() {
 		
 		return VolumneUnit.this.name();
+	}
+
+	@Override
+	public String getMeasurementType() {
+		// TODO Auto-generated method stub
+		return this.getClass().getSimpleName();
+	}
+
+	@Override
+	public IMeasurable getUnitInstance(String unitName) {
+		for(VolumneUnit vol : VolumneUnit.values()) {
+			if(vol.equals(unitName)) {
+				return vol;
+			}
+		}
+		throw new IllegalArgumentException(unitName);
 	}
       
 }

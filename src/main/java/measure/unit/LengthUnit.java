@@ -1,4 +1,4 @@
-package measure;
+package measure.unit;
 
 public enum LengthUnit implements IMeasurable{
 	FEET(1.0),
@@ -27,6 +27,22 @@ public enum LengthUnit implements IMeasurable{
 	public String getUnitName() {
 		// TODO Auto-generated method stub
 		return LengthUnit.this.name();
+	}
+
+	@Override
+	public String getMeasurementType() {
+		// TODO Auto-generated method stub
+		return this.getClass().getSimpleName();
+	}
+
+	@Override
+	public IMeasurable getUnitInstance(String unitName) {
+		for(LengthUnit len: LengthUnit.values()) {
+			if(len.equals(unitName)) {
+				return len;
+			}
+		}
+		throw new IllegalArgumentException("The Unit Doesn't exists");
 	}
 
 	

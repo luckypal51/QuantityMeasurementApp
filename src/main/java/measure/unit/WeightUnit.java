@@ -1,4 +1,4 @@
-package measure;
+package measure.unit;
 
 public enum WeightUnit implements IMeasurable{
     KG(1.0),
@@ -28,5 +28,21 @@ public enum WeightUnit implements IMeasurable{
 	public String getUnitName() {
 		// TODO Auto-generated method stub
 		return WeightUnit.this.name();
+	}
+
+	 @Override
+	public String getMeasurementType() {
+		// TODO Auto-generated method stub
+		 return this.getClass().getSimpleName();
+	}
+
+	 @Override
+	public IMeasurable getUnitInstance(String unitName) {
+	     for(WeightUnit weight: WeightUnit.values()) {
+	    	 if(weight.equals(unitName)) {
+	    		 return weight;
+	    	 }
+	     }
+	     throw new IllegalArgumentException("The Unit Doesn't Exists");
 	}
 }
