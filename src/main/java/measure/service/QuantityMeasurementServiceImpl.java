@@ -29,7 +29,7 @@ public class QuantityMeasurementServiceImpl implements IQuantityMeasurementServi
 	public boolean compare(QuantityDTO thisQuantityDTO, QuantityDTO thatQuantityDTO) {
 		 QuantityModel<?> q1 = getQuantityInstance(thisQuantityDTO);
 		 QuantityModel<?> q2 = getQuantityInstance(thatQuantityDTO);
-		 
+		 validateArithmeticOperation(q1, q2);
 		 Quantity<IMeasurable> q3 = new Quantity<IMeasurable>(q1.getValue(),q1.getUnit());
 		 Quantity<IMeasurable> q4 = new Quantity<IMeasurable>(q2.getValue(),q2.getUnit());
 		 
@@ -42,7 +42,7 @@ public class QuantityMeasurementServiceImpl implements IQuantityMeasurementServi
 	public QuantityDTO convert(QuantityDTO thisQuantityDTO, QuantityDTO thatQuantityDTO) {
 		QuantityModel<?> q1 = getQuantityInstance(thisQuantityDTO);
 		QuantityModel<?> q2 = getQuantityInstance(thatQuantityDTO);
-		
+		validateArithmeticOperation(q1, q2);
 		Quantity<IMeasurable> q3 = new Quantity<IMeasurable>(q1.getValue(),q1.getUnit());
 		Quantity<IMeasurable> q4 = new Quantity<IMeasurable>(q2.getValue(), q2.getUnit());
 		q4 = q3.convertTo(q4);
@@ -58,7 +58,7 @@ public class QuantityMeasurementServiceImpl implements IQuantityMeasurementServi
 		
 		QuantityModel<?> q1 =getQuantityInstance(thisQuantityDTO);
 		QuantityModel<?> q2 = getQuantityInstance(thatQuantityDTO);
-		
+		validateArithmeticOperation(q1, q2);
 		Quantity<IMeasurable> q3 = new Quantity<IMeasurable>(q1.getValue(),q1.getUnit());
 		Quantity<IMeasurable> q4 = new Quantity<IMeasurable>(q2.getValue(), q2.getUnit());
 		
@@ -75,7 +75,8 @@ public class QuantityMeasurementServiceImpl implements IQuantityMeasurementServi
 		QuantityModel<?> q1 = getQuantityInstance(thisQuantityDTO);
 		QuantityModel<?> q2 = getQuantityInstance(thatQuantityDTO);
 		QuantityModel<?> q3 = getQuantityInstance(targetQuantityDTO);
-		
+		validateArithmeticOperation(q1, q2);
+		validateArithmeticOperation(q2, q3);
 		Quantity<IMeasurable> q4 = new Quantity<IMeasurable>(q1.getValue(),q1.getUnit());
 		Quantity<IMeasurable> q5 = new Quantity<IMeasurable>(q2.getValue(), q2.getUnit());
 		
@@ -91,7 +92,7 @@ public class QuantityMeasurementServiceImpl implements IQuantityMeasurementServi
 	public QuantityDTO subtract(QuantityDTO thisQuantityDTO, QuantityDTO thatQuantityDTO) {
 		QuantityModel<?> q1 = getQuantityInstance(thisQuantityDTO);
 		QuantityModel<?> q2 = getQuantityInstance(thatQuantityDTO);
-		
+		validateArithmeticOperation(q1, q2);
 		Quantity<IMeasurable> q3 = new Quantity<IMeasurable>(q1.getValue(),q1.getUnit());
 		Quantity<IMeasurable> q4 = new Quantity<IMeasurable>(q2.getValue(), q2.getUnit());
 		
@@ -108,7 +109,8 @@ public class QuantityMeasurementServiceImpl implements IQuantityMeasurementServi
 		QuantityModel<?> q1 = getQuantityInstance(thisQuantityDTO);
 		QuantityModel<?> q2 = getQuantityInstance(thatQuantityDTO);
 		QuantityModel<?> q3 = getQuantityInstance(targetQuantityDTO);
-		
+		validateArithmeticOperation(q1, q2);
+		validateArithmeticOperation(q2, q3);
 		Quantity<IMeasurable> q4 = new Quantity<IMeasurable>(q1.getValue(),q1.getUnit());
 		Quantity<IMeasurable> q5 = new Quantity<IMeasurable>(q2.getValue(), q2.getUnit());
 		q5 = q4.subtract(q5,q3.getUnit());
@@ -123,7 +125,7 @@ public class QuantityMeasurementServiceImpl implements IQuantityMeasurementServi
 	public QuantityDTO divide(QuantityDTO thisQuantityDTO, QuantityDTO thatQuantityDTO) {
 		QuantityModel<?> q1 = getQuantityInstance(thisQuantityDTO);
 		QuantityModel<?> q2 = getQuantityInstance(thatQuantityDTO);
-		
+		validateArithmeticOperation(q1, q2);
 		Quantity<IMeasurable> q3 = new Quantity<IMeasurable>(q1.getValue(), q1.getUnit());
 		Quantity<IMeasurable> q4 = new Quantity<IMeasurable>(q2.getValue(),q2.getUnit());
 		
@@ -139,7 +141,8 @@ public class QuantityMeasurementServiceImpl implements IQuantityMeasurementServi
 		 QuantityModel<?> q1 = getQuantityInstance(thisQuantityDTO);
 		 QuantityModel<?> q2 = getQuantityInstance(thatQuantityDTO);
 		 QuantityModel<?> q3 = getQuantityInstance(targetQuantityDTO);
-		 
+		 validateArithmeticOperation(q1, q2);
+		 validateArithmeticOperation(q2, q3);
 		 Quantity<IMeasurable> q4 = new Quantity<IMeasurable>(q1.getValue(),q1.getUnit());
 		 Quantity<IMeasurable> q5 = new Quantity<IMeasurable>(q2.getValue(), q2.getUnit());
 		 
@@ -165,11 +168,12 @@ public class QuantityMeasurementServiceImpl implements IQuantityMeasurementServi
     		throw new IllegalArgumentException("The Unit Does Not Exists");
     	}
     }
-    
-    public static void main(String[] args) {
-	  QuantityMeasurementServiceImpl imp = new  QuantityMeasurementServiceImpl(new QuantityMeasurementCacheRepository());
-	  System.out.println("add "+imp.add(new QuantityDTO(24,"INCHES","LENGTH"), new QuantityDTO(2,"FEET","LENGTH")));
-	  System.out.println("conversion "+imp.convert(new QuantityDTO(0.0,"FEET","LENGTH"),new QuantityDTO(24,"INCHES","LENGTH")));
-	  
-	}
+    private void  validateArithmeticOperation(QuantityModel<?> thisQuantityModel,QuantityModel<?> thatQuantityModel) {
+    	if(Double.isInfinite(thisQuantityModel.getValue())||Double.isNaN(thisQuantityModel.getValue())||Double.isInfinite(thatQuantityModel.getValue())||Double.isNaN(thatQuantityModel.getValue())) {
+    		throw new IllegalArgumentException("Invalid Value");
+    	}
+    	if(thisQuantityModel.getUnit().getClass()!=thatQuantityModel.getUnit().getClass()) {
+    		throw new IllegalArgumentException("Unit mismatch");
+    	}
+    }
 }

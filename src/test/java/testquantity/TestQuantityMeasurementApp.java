@@ -890,6 +890,14 @@ public class TestQuantityMeasurementApp {
 	    	 
 	    	 assertEquals(3.0,controllers.performAddition(q1, q2).getValue());
 	     }
-	    
+	    @Test
+	    public void UnitMisMatchFeetAndGram() {
+	    	 QuantityDTO q1 = new QuantityDTO(2.0,"FEET","LENGTH");
+	    	 QuantityDTO q2 = new QuantityDTO(12.0,"GRAM","WEIGHT");
+	    	 
+	    	 assertThrows(IllegalArgumentException.class,()->{
+	    		 controllers.performAddition(q1, q2);
+	    	 });
+	    }
 }
 
