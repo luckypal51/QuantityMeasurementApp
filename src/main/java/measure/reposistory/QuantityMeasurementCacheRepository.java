@@ -129,4 +129,34 @@ public class QuantityMeasurementCacheRepository implements IQuantityMeasurementR
             );
         }
     }
+	@Override
+	public List<QuantityMeasurementEntity> getMeasurementByOperation(String Operation) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public List<QuantityMeasurementEntity> getMeasurementByType(String type) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public int getTotalCount() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	@Override
+	public void deleteALl() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public String getPoolStatistic() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public void releaseResource() {
+		// TODO Auto-generated method stub
+		
+	}
 }
