@@ -1,4 +1,4 @@
-package com.app.quantitymeasurement.entity;
+package com.app.quantitymeasurement.dto;
 
 
 import java.util.logging.Logger;
@@ -93,7 +93,7 @@ public class QuantityDTO {
    @Pattern(regexp = "LengthUnit| VolumeUnit|WeightUnit |TemperatureUnit",
    message = "Measurement type must be one of: LengthUnit, VolumeUnit, "+
    "WeightUnit, TemperatureUnit")
-   @Schema (example = "LengthUnit", allowableValues = {
+   @Schema (example = "LENGTH", allowableValues = {
    "LengthUnit", "VolumeUnit", "WeightUnit", "TemperatureUnit"})
    public String measurementType;
    
