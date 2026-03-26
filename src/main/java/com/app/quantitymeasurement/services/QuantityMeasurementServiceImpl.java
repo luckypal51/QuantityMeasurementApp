@@ -7,9 +7,9 @@ import org.springframework.stereotype.Service;
 
 import com.app.quantitymeasurement.dto.QuantityDTO;
 import com.app.quantitymeasurement.dto.QuantityMeasurementDTO;
-import com.app.quantitymeasurement.model.Quantity;
 import com.app.quantitymeasurement.model.QuantityMeasurementEntity;
 import com.app.quantitymeasurement.model.QuantityModel;
+import com.app.quantitymeasurement.quantity.Quantity;
 import com.app.quantitymeasurement.repository.QuantityMeasurentRepository;
 import com.app.quantitymeasurement.unit.IMeasurable;
 import com.app.quantitymeasurement.unit.LengthUnit;
