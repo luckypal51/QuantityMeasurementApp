@@ -52,7 +52,7 @@ public class QuantityMeasurementServiceImpl implements IQuantityMeasurementServi
 		validateArithmeticOperation(q1, q2);
 		Quantity<IMeasurable> q3 = new Quantity<IMeasurable>(q1.getValue(),q1.getUnit());
 		Quantity<IMeasurable> q4 = new Quantity<IMeasurable>(q2.getValue(), q2.getUnit());
-		q4 = q3.convertTo(q4);
+		q4 = q4.convertTo(q3);
 		
 		QuantityDTO q5 = new QuantityDTO(q4.getValue(),q4.getUnit().getUnitName(),q4.getUnit().getClass().getSimpleName());
 		repository.save(new QuantityMeasurementEntity(thisQuantityDTO, thatQuantityDTO, Operation.CONVERSION.toString(),q5));

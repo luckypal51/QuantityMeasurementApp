@@ -1,6 +1,7 @@
 package com.app.quantitymeasurement.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,7 +24,7 @@ public class AuthController {
 	}
 	
 	@PostMapping("/signin")
-	public String signin(@RequestBody AuthDtoRequest authDtoRequest) {
-		return authService.signin(authDtoRequest);
+	public ResponseEntity<String> signin(@RequestBody AuthDtoRequest authDtoRequest) {
+		return ResponseEntity.ok(authService.signin(authDtoRequest));
 	}
 }

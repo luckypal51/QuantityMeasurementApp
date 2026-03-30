@@ -34,10 +34,13 @@ public class SecurityConfig {
 	 SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 	return http.cors(cors -> cors.configurationSource( corsConfigurationSource()))
 	.csrf(csrf -> csrf.disable())
+	  .headers(headers -> headers.frameOptions(frame -> frame.disable()))
 	.sessionManagement (session ->
 	session. sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 	.authorizeHttpRequests (authz -> authz
-	.requestMatchers("/api/v1/auth/signup","/api/v1/auth/signin","/api/v1/quantities/h2-console/**","/api/v1/quantities/swagger-ui/**").permitAll()
+	.requestMatchers("/api/v1/auth/**").permitAll()
+	.requestMatchers("/h2-console/**").permitAll()
+	.requestMatchers("/swagger-ui/**").permitAll()
 	.anyRequest ().authenticated()
 	)
 	.addFilterBefore(jwtFilter,UsernamePasswordAuthenticationFilter.class).build();
@@ -48,7 +51,7 @@ public class SecurityConfig {
     @Bean
     UrlBasedCorsConfigurationSource corsConfigurationSource() {
 	CorsConfiguration configuration = new CorsConfiguration();
-	configuration.setAllowedOrigins(Arrays.asList( "http://localhost:3000", "http://localhost:8080")
+	configuration.setAllowedOrigins(Arrays.asList( "http://localhost:3000", "http://localhost:8080", "http://127.0.0.1:5500","http://localhost:4200")
 	);
 	configuration. setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
 

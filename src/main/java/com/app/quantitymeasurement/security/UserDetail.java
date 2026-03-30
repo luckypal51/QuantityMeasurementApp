@@ -21,7 +21,7 @@ public class UserDetail implements UserDetailsService {
 		
 		return org.springframework.security.core.userdetails.User
 				.builder()
-				.username(user.getUsername())
+				.username(user.getEmail())
 				.password(user.getPassword())
 				.build();
 	}
