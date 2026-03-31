@@ -14,7 +14,7 @@ import com.app.quantitymeasurement.repository.QuantityMeasurentRepository;
 import com.app.quantitymeasurement.unit.IMeasurable;
 import com.app.quantitymeasurement.unit.LengthUnit;
 import com.app.quantitymeasurement.unit.Temperature;
-import com.app.quantitymeasurement.unit.VolumneUnit;
+import com.app.quantitymeasurement.unit.VolumeUnit;
 import com.app.quantitymeasurement.unit.WeightUnit;
 
 @Service
@@ -194,7 +194,7 @@ public class QuantityMeasurementServiceImpl implements IQuantityMeasurementServi
     private QuantityModel<?> getQuantityInstance(QuantityDTO dto){
     	switch(dto.getMeasurementType()) {
     	case "VolumeUnit":
-    		return new QuantityModel<>(dto.getValue(),VolumneUnit.valueOf(dto.getUnit()));
+    		return new QuantityModel<>(dto.getValue(),VolumeUnit.valueOf(dto.getUnit()));
     	case "WeightUnit":
     		return new QuantityModel<>(dto.getValue(),WeightUnit.valueOf(dto.getUnit()));
     	case "LengthUnit":

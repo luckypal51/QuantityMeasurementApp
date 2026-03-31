@@ -49,7 +49,7 @@ public class QuantityDTO {
 	    return this.getClass().getSimpleName();
 	}  
    }
-   enum VolumneUnit implements IMeasurableUnit{
+   enum VolumeUnit implements IMeasurableUnit{
 	MILILITRE,LITRE,GALLON;
 
 	@Override
@@ -120,7 +120,7 @@ public class QuantityDTO {
 	   LengthUnit.valueOf(unit);
 	   break;
 	   case "VolumeUnit":
-	   VolumneUnit.valueOf(unit);
+	   VolumeUnit.valueOf(unit);
 	   break;
 	   case "WeightUnit":
 	   WeightUnit.valueOf(unit);

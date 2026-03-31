@@ -107,7 +107,7 @@ public class Quantity<T extends IMeasurable> {
         if (other == null)
             throw new IllegalArgumentException("Operand cannot be null");
 
-        if (this.unit.getClass() != other.unit.getClass())
+        if (!this.unit.getMeasurementType().equals(other.unit.getMeasurementType()))
             throw new IllegalArgumentException("Incompatible unit categories");
 
         if (!Double.isFinite(this.value) || !Double.isFinite(other.value))
