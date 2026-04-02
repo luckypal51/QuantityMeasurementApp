@@ -2,12 +2,13 @@ package com.app.quantitymeasurement.security;
 
 import java.util.Date;
 
+
 import javax.crypto.SecretKey;
 
-
+import org.springframework.boot.security.autoconfigure.SecurityProperties.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
-import com.app.quantitymeasurement.model.User;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -18,9 +19,9 @@ public class JwtUtil {
 
 	private final String SECRET_KEY = "sdfghjxcvbghjklhjkogbhjkl4412125121211515351gbvhbjndjanma";
 	
-	public String generateToken(User user) {
+	public String generateToken(UserDetails user) {
 		return Jwts.builder()
-				.subject(user.getEmail().trim())
+				.subject(user.getUsername())
 				.issuedAt(new Date())
 				.expiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60))
 				.signWith(getKey())

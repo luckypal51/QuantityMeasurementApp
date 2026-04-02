@@ -10,12 +10,16 @@ import com.app.quantitymeasurement.dto.AuthDtoRequest;
 import com.app.quantitymeasurement.model.User;
 import com.app.quantitymeasurement.repository.SqlDatabase;
 import com.app.quantitymeasurement.security.JwtUtil;
+import com.app.quantitymeasurement.security.UserDetail;
 
 @Service
 public class AuthService {
-    
+	
 	@Autowired
 	private SqlDatabase repo;
+    
+	@Autowired
+	private UserDetail user;
 	
 	@Autowired
 	private PasswordEncoder encoder;
@@ -34,6 +38,6 @@ public class AuthService {
 	
 	public String signin(AuthDtoRequest authDtoRequest) {
 		manager.authenticate(new UsernamePasswordAuthenticationToken(authDtoRequest.getEmail(), authDtoRequest.getPassword()));
-		return jwtUtil.generateToken(repo.findByEmail(authDtoRequest.getEmail()));
+		return jwtUtil.generateToken(user.loadUserByUsername(authDtoRequest.getEmail()));
 	}
 }

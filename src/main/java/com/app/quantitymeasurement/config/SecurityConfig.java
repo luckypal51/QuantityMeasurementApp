@@ -14,6 +14,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
@@ -43,9 +44,8 @@ public class SecurityConfig {
 	.requestMatchers("/swagger-ui/**").permitAll()
 	.anyRequest ().authenticated()
 	)
-	.addFilterBefore(jwtFilter,UsernamePasswordAuthenticationFilter.class).build();
-
-	
+	.addFilterBefore(jwtFilter,UsernamePasswordAuthenticationFilter.class)
+	.build();
 	}
 
     @Bean
@@ -72,4 +72,9 @@ public class SecurityConfig {
     public PasswordEncoder passwordEncoder() {
     	return new BCryptPasswordEncoder();
     }
+    @Bean
+    RestTemplate restTemplate() {
+        return new RestTemplate();
+    }
+	
 }
