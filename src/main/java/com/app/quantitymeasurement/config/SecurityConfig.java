@@ -61,7 +61,8 @@ public class SecurityConfig {
     	            "http://localhost:8080",
     	            "http://127.0.0.1:5500",
     	            "http://localhost:4200",
-    	            "https://quantitymeasurementappui05-git-main-luckypal51s-projects.vercel.app"
+    	            "https://quantitymeasurementappui05-git-main-luckypal51s-projects.vercel.app",
+    	            "https://quantitymeasurementapp-production-218f.up.railway.app"
     	    ));
 
     	    configuration.setAllowedMethods(Arrays.asList(
